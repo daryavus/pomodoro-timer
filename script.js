@@ -15,6 +15,12 @@ function updateTimerDisplay() {
   timer.textContent = formattedTime;
 }
 
+function stopTimer() {
+  clearInterval(timerId);
+  timerId = null;
+  btnStart.textContent = 'Start';
+};
+
 btnWork.addEventListener('click', function() {
   totalSeconds = 1500;
   updateTimerDisplay();
@@ -23,9 +29,7 @@ btnWork.addEventListener('click', function() {
   btnBreak.classList.remove('active');
 
   if(timerId) {
-    clearInterval(timerId);
-    timerId = null;
-    btnStart.textContent = 'Start';
+    stopTimer();
   }
 });
 
@@ -37,17 +41,13 @@ btnBreak.addEventListener('click', function() {
   btnWork.classList.remove('active');
 
   if(timerId) {
-    clearInterval(timerId);
-    timerId = null;
-    btnStart.textContent = 'Start';
+    stopTimer();
   }
 });
 
 btnStart.addEventListener('click', function() {
   if(timerId) {
-    clearInterval(timerId);
-    timerId = null;
-    btnStart.textContent = 'Start';
+    stopTimer();
   } else {
     btnStart.textContent = 'Stop';
     timerId = setInterval(() => {
@@ -70,8 +70,7 @@ btnStart.addEventListener('click', function() {
 });
 
 btnReset.addEventListener('click', function() {
-  clearInterval(timerId);
-  timerId = null;
+  stopTimer();
 
   if(btnWork.classList.contains('active')) {
     totalSeconds = 1500;
@@ -80,7 +79,6 @@ btnReset.addEventListener('click', function() {
   }
 
   updateTimerDisplay();
-  btnStart.textContent = 'Start';
 });
 
 
