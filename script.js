@@ -55,15 +55,13 @@ btnStart.addEventListener('click', function() {
         totalSeconds--;
         updateTimerDisplay();
       } else {
-        clearInterval(timerId);
-        timerId = null;
+        stopTimer();
         if(btnWork.classList.contains('active')) {
           totalSeconds = 1500;
         } else {
           totalSeconds = 300;
         }
         updateTimerDisplay();
-        btnStart.textContent = 'Start';
       }
     }, 1000);
   }
